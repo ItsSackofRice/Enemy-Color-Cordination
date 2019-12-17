@@ -18,6 +18,8 @@ public class Hitbox : MonoBehaviour
 
     void Update()
     {
+    
+    // HitBox Changes Tag on button press
          if (Input.GetKeyDown(KeyCode.Space))
         {
             gameObject.tag = "Yellow";
@@ -35,12 +37,13 @@ public class Hitbox : MonoBehaviour
             gameObject.tag = "Blue";
         }
 
+    
+    // This changes the scene after a certain amount of points were gained
          if(counter >= 6 && SceneManager.GetActiveScene().name == "level1" )
         {
             SceneManager.LoadScene("level2");
             counter = 0;
-
-            
+   
         }
         else if (counter >= 6 && SceneManager.GetActiveScene().name == "level2")
         {
@@ -62,6 +65,7 @@ public class Hitbox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+    // This detects if the tags match, if they do they defeat the enemy 
         if (collision.tag == "Yellow" && gameObject.tag == "Yellow")
         {
             SoundManager.Playsound("Hit1");
@@ -92,7 +96,7 @@ public class Hitbox : MonoBehaviour
         }
 
     }
-
+// Sets the score
     void SetScoreText()
     {
         ScoreText.text = "Score: " + counter.ToString();
